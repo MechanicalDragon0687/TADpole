@@ -233,9 +233,9 @@ void fixcrc16(u16 *checksum, u8 *message, u32 len){
 
 
 void usage(){
-	printf("TWLFix input.bin [TargetTID]\n");
-	printf("ex. TADpole 484E4441.bin\n");
-	printf("ex. TADpole 484E4441.bin 0x0004013800001234\n");
+	printf("TWLFixGenerator input.bin [TargetTID]\n");
+	printf("ex. TWLFixGenerator 484E4441.bin\n");
+	printf("ex. TWLFixGenerator TotallyLegitDSiWare.bin 0x0004013800001234\n");
 }
 
 int ishex(char *in, u32 size){
