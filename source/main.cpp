@@ -311,7 +311,7 @@ int main(int argc, char* argv[]) {
 		printf("Target ID: %016llx\n",(long long unsigned int)(uTargetTID));
 		DSi.dumpModifiedTad(uTargetTID);
 	}else{
-		printf("No Target ID provided, dumping 4 default.\n");
+		printf("No Target ID provided, dumping defaults.\n");
 		DSi.dumpModifiedTad(0x0004013800000102); // o3ds TWL Firm
 		DSi.dumpModifiedTad(0x0004013820000102); // n3ds TWL Firm
 		DSi.dumpModifiedTad(0x0004800f484e4841); // nds whitelist
