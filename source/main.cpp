@@ -38,6 +38,7 @@ class TAD {
 	u8 *contents[CONTENT_MAX];
 	u8 footer[SIZE_FOOTER];
 	u32 dsiware_size;
+	u32 oTID;
 	~TAD() {
 		u32 content_size[11]={0};
 		memcpy(content_size, header+0x48, 11*4);
@@ -70,6 +71,11 @@ class TAD {
 		if (memcmp("3FDT", header, 4)) {
 			error("Decryption failed","", true);
 		}
+		for (int i=0;i<4;i++){
+			oTID=oTID<<8;
+			oTID+=header[0x3b-i];
+		}
+		printf("Source TIDLOW: %08x\n",oTID);
 		
 		memcpy(content_size, header+0x48, 11*4);
 		content_size[0]+=0xC; //tmd padding adjust
@@ -115,6 +121,11 @@ class TAD {
 
 		snprintf(outname, 32, "%08x.bin", (u32)(uTID & 0xFFFFFFFF));
 
+		if ((uTID & 0xFFFFFFFF) == oTID) {
+			printf("Not writing %s, this dsiware was used as the source\n",outname);
+			return;
+		}
+		
 		for (int offset=0x38;offset<0x40;++offset) {
 			header[offset] = uTID&0xFF;
 			uTID = uTID >> 8;
@@ -301,10 +312,14 @@ int main(int argc, char* argv[]) {
 		DSi.dumpModifiedTad(uTargetTID);
 	}else{
 		printf("No Target ID provided, dumping 4 default.\n");
-		DSi.dumpModifiedTad(0x0004013800000102);
-		DSi.dumpModifiedTad(0x0004013820000102);
-		DSi.dumpModifiedTad(0x0004800f484e4841);
-		DSi.dumpModifiedTad(0x0004800f484e4C41);
+		DSi.dumpModifiedTad(0x0004013800000102); // o3ds TWL Firm
+		DSi.dumpModifiedTad(0x0004013820000102); // n3ds TWL Firm
+		DSi.dumpModifiedTad(0x0004800f484e4841); // nds whitelist
+		DSi.dumpModifiedTad(0x0004800f484e4C41); // version data
+		DSi.dumpModifiedTad(0x0004800542383841); // DS Internet
+		DSi.dumpModifiedTad(0x00048005484E4441); // DS Dlp
+//		DSi.dumpModifiedTad(0x00048005484E4443); // CHN DS Dlp
+//		DSi.dumpModifiedTad(0x00048005484E444B); // KOR DS Dlp
 	}
 	printf("\nJob completed\n");
 	//printf("Cleaning up\n");
