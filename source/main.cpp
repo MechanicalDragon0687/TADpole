@@ -308,7 +308,7 @@ int main(int argc, char* argv[]) {
 
 	TAD DSi(argv[1]);
 	if (uTargetTID > 0) {
-		printf("Target ID: %016llx\n",uTargetTID);
+		printf("Target ID: %016llx\n",(long long unsigned int)(uTargetTID));
 		DSi.dumpModifiedTad(uTargetTID);
 	}else{
 		printf("No Target ID provided, dumping 4 default.\n");

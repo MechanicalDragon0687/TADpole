@@ -1,15 +1,20 @@
 # What is this?
 A program that allows you to create fake dsiware based on a valid dsiware and a movable. Attempting to install these fake dsiware will force uninstall any apps with the same titleid
 # Requirements
-* Windows - compiling to Linux & Mac should be easy given there are no dependancies here though
+* Windows - compiling to Linux & Mac should be easy given there are no dependancies here (find your own ctcert)
 * A DSiWare export from your target console. The filename must be in the format: <8 digit hex>.bin Ex. 484E4441.bin)
 * A `movable.sed` from your target console.
+# Installation
+1. Copy the binary (exe) to a folder
+1. Put your movable.sed into the same folder
+1. Put your dsiware into the same folder
 
 # Usage  
 Basic Command Line usage is:
 ```
-TADpole (8-digit hex).bin 
+TWLFixGenerator input.bin [TargetTID] 
 ```
+* You can also drag and drop the dsiware over the binary to run it. The movable.sed and dsiware must be in the same directory.
 
 # Additional Notes
 * If you perform a System Transfer from console A to console B, the `movable.sed` from console A (pre-transfer) will be identical to the `movable.sed` for console B (post-transfer).
