@@ -2,7 +2,7 @@
 A program that allows you to create fake dsiware based on a valid dsiware and a movable. Attempting to install these fake dsiware will force uninstall any apps with the same titleid
 # Requirements
 * Windows - compiling to Linux & Mac should be easy given there are no dependancies here (find your own ctcert)
-* A DSiWare export from your target console. The filename must be in the format: <8 digit hex>.bin Ex. 484E4441.bin)
+* A DSiWare export from your target console. The filename must be in the format: <8 digit hex>.bin Ex. 484E4441.bin
 * A `movable.sed` from your target console.
 # Installation
 1. Copy the binary (exe) to a folder
